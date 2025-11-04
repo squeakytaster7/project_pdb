@@ -18,7 +18,7 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 def fetch_countries() -> pd.DataFrame:
     rows, page = [], 1
     while True:
-        url = f\"https://api.worldbank.org/v2/country?format=json&per_page=300&page={page}\"
+        url = f"https://api.worldbank.org/v2/country?format=json&per_page=300&page={page}"
         res = requests.get(url, timeout=120)
         res.raise_for_status()
         j = res.json()
@@ -41,8 +41,8 @@ def fetch_countries() -> pd.DataFrame:
 def fetch_indicator_latest(indicator: str, start_year: int, end_year: int) -> pd.DataFrame:
     rows, page = [], 1
     while True:
-        url = (f\"https://api.worldbank.org/v2/country/all/indicator/{indicator}\"
-               f\"?format=json&per_page=20000&date={start_year}:{end_year}&page={page}\")
+        url = (f"https://api.worldbank.org/v2/country/all/indicator/{indicator}"
+               f"?format=json&per_page=20000&date={start_year}:{end_year}&page={page}")
         res = requests.get(url, timeout=180)
         res.raise_for_status()
         j = res.json()
